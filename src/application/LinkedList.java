@@ -40,4 +40,26 @@ public class LinkedList{
 	public void clear(){
 		this.head = null;
 	}
+	
+	public void deleteFirst(){
+		if(size == 0){
+			throw new IndexOutOfBoundsException("This List is Empty");
+		}
+		else{
+			this.head = this.head.next;
+		}
+		
+	}
+	
+	public void deleteLast(){
+		if(size == 0){
+			throw new IndexOutOfBoundsException("This List is Empty");
+		}
+		
+		Node curr = this.head;
+		
+		while(curr.next != null){
+			
+		}
+	}
 }
