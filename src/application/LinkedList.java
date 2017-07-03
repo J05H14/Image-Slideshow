@@ -28,7 +28,7 @@ public class LinkedList{
 		
 		else{
 			Node curr = this.head;
-			while(curr != null){
+			while(curr.next != null){
 				curr = curr.next;
 			}
 			newNode.prev = curr;
