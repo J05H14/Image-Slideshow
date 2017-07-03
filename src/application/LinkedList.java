@@ -59,7 +59,9 @@ public class LinkedList{
 		Node curr = this.head;
 		
 		while(curr.next != null){
-			
+			curr = curr.next;
 		}
+		
+		curr.prev.next = null;
 	}
 }
