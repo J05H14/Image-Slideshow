@@ -36,4 +36,8 @@ public class LinkedList{
 		}
 		this.size++;
 	}
+	
+	public void clear(){
+		this.head = null;
+	}
 }
