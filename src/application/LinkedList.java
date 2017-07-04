@@ -100,4 +100,13 @@ public class LinkedList{
 			add(nodes.get(i).file);
 		}
 	}
+	
+	public File get(int index){
+		if(size == 0){
+			throw new IndexOutOfBoundsException("This List is Empty");
+		}
+		else{
+			return null;
+		}
+	}
 }
