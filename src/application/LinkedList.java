@@ -1,6 +1,8 @@
 package application;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class LinkedList{
 
@@ -82,6 +84,20 @@ public class LinkedList{
 				curr = curr.next;
 			}
 			curr.prev.next = curr.next;
+		}
+	}
+	
+	public void shuffle(){
+		ArrayList<Node> nodes = new ArrayList<Node>();
+		
+		Node curr = this.head;
+		while(curr.next != null){
+			nodes.add(curr);
+		}
+		Collections.shuffle(nodes);
+		
+		for(int i = 0; i < nodes.size(); i++){
+			add(nodes.get(i).file);
 		}
 	}
 }
