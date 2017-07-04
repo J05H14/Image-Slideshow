@@ -64,4 +64,24 @@ public class LinkedList{
 		
 		curr.prev.next = null;
 	}
+	
+	public void delete(int index){
+		if(size == 0){
+			throw new IndexOutOfBoundsException("This List is Empty");
+		}
+		
+		if(index == 0){
+			deleteFirst();
+		}
+		else if(index == size - 1){
+			deleteLast();
+		}
+		else{
+			Node curr = this.head;
+			for(int i = 0; i < index; i++){
+				curr = curr.next;
+			}
+			curr.prev.next = curr.next;
+		}
+	}
 }
