@@ -106,7 +106,11 @@ public class LinkedList{
 			throw new IndexOutOfBoundsException("This List is Empty");
 		}
 		else{
-			return null;
+			Node curr = this.head;
+			for(int i = 0; i < index; i++){
+				curr = curr.next;
+			}
+			return curr.file;
 		}
 	}
 }
