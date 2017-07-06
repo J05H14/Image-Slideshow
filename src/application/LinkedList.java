@@ -21,6 +21,12 @@ public class LinkedList{
 		}
 	}
 	
+	public void add(File[] images){
+		for(File image : images){
+			add(image);
+		}
+	}
+	
 	public void add(File image) {
 		Node newNode = new Node(image);
 		

@@ -7,10 +7,14 @@ import javax.swing.JFileChooser;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 
 
 public class Main extends Application {
+	LinkedList list = null;
+	int pos = -1;
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -18,6 +22,20 @@ public class Main extends Application {
 			Scene scene = new Scene(root,900,700);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
+			Button add = new Button("Add Image");
+			Button delete = new Button("Remove Image");
+			Button next = new Button("Next");
+			Button prev = new Button("Previous");
+			
+			add.setOnAction(e -> {
+				if(list == null){
+					list = new LinkedList(getFiles());
+					pos = 0;
+				}
+				else{
+					list.add(getFiles());
+				}
+			});
 			
 			
 			primaryStage.setScene(scene);
