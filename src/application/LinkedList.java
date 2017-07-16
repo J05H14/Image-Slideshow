@@ -119,4 +119,8 @@ public class LinkedList{
 			return curr.file;
 		}
 	}
+	
+	public int size(){
+		return this.size;
+	}
 }
