@@ -55,6 +55,7 @@ public class Main extends Application {
 
 				root.setCenter(loadImage(list.get(pos)));
 			}
+			root.setBottom(buttonBox);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
