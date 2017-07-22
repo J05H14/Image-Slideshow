@@ -30,11 +30,11 @@ public class Main extends Application {
 			importImg.setOnAction(e -> {
 				list = new LinkedList(getFiles());
 				pos = 0;
-				
+
 				slideShowStage();
 			});
-			
-			
+
+
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
@@ -45,38 +45,57 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
+
 	public void slideShowStage(){
+		BorderPane bp = new BorderPane();
+		Scene sc = new Scene(bp, 900, 700);
+		Stage stage = new Stage();
+
 		Button add = new Button("Add Image");
 		Button delete = new Button("Remove Image");
 		Button next = new Button("Next");
 		Button prev = new Button("Previous");
+
+		HBox buttonBox = new HBox(add, delete, next, prev);
+
+		bp.setCenter(loadImage(list.get(pos)));
 		
 		add.setOnAction(e -> {
-			if(list == null){
-				list = new LinkedList(getFiles());
-				pos = 0;
-			}
-			else{
-				list.add(getFiles());
+			list.add(getFiles());
+		});
+		prev.setOnAction(e -> {
+			if(pos != 0){
+				pos--;
+				bp.setCenter(loadImage(list.get(pos)));
 			}
 		});
-		if(pos != -1){
-			prev.setOnAction(e -> {
-				if(pos != 0){
-					pos--;
-				}
-			});
-			next.setOnAction(e -> {
-				if(pos != list.size() - 1){
-					pos++;
-				}
-			});
+		next.setOnAction(e -> {
+			if(pos != list.size() - 1){
+				pos++;
+				bp.setCenter(loadImage(list.get(pos)));
+			}
+		});
+		delete.setOnAction(e -> {
+			if(pos == list.size() - 1){
+				list.delete(pos);
+				pos--;
+				bp.setCenter(loadImage(list.get(pos)));
+			}
+			else{
+				list.delete(pos);
+				bp.setCenter(loadImage(list.get(pos)));
+			}
+		});
+		
 
-			root.setCenter(loadImage(list.get(pos)));
-		}
-		root.setBottom(buttonBox);
+		bp.setCenter(loadImage(list.get(pos)));
+		
+		bp.setBottom(buttonBox);
+		
+		stage.setScene(sc);
+		stage.show();
 	}
+
 
 	public ImageView loadImage(File imgFile){
 		String fileLocation = imgFile.toURI().toString();
