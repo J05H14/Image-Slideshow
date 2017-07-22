@@ -25,37 +25,16 @@ public class Main extends Application {
 			Scene scene = new Scene(root,900,700);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
-			Button add = new Button("Add Image");
-			Button delete = new Button("Remove Image");
-			Button next = new Button("Next");
-			Button prev = new Button("Previous");
-			
-			HBox buttonBox = new HBox(add);
+			Button importImg = new Button("Import Images");
 
-			add.setOnAction(e -> {
-				if(list == null){
-					list = new LinkedList(getFiles());
-					pos = 0;
-				}
-				else{
-					list.add(getFiles());
-				}
+			importImg.setOnAction(e -> {
+				list = new LinkedList(getFiles());
+				pos = 0;
+				
+				slideShowStage();
 			});
-			if(pos != -1){
-				prev.setOnAction(e -> {
-					if(pos != 0){
-						pos--;
-					}
-				});
-				next.setOnAction(e -> {
-					if(pos != list.size() - 1){
-						pos++;
-					}
-				});
-
-				root.setCenter(loadImage(list.get(pos)));
-			}
-			root.setBottom(buttonBox);
+			
+			
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
@@ -65,6 +44,38 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+	
+	public void slideShowStage(){
+		Button add = new Button("Add Image");
+		Button delete = new Button("Remove Image");
+		Button next = new Button("Next");
+		Button prev = new Button("Previous");
+		
+		add.setOnAction(e -> {
+			if(list == null){
+				list = new LinkedList(getFiles());
+				pos = 0;
+			}
+			else{
+				list.add(getFiles());
+			}
+		});
+		if(pos != -1){
+			prev.setOnAction(e -> {
+				if(pos != 0){
+					pos--;
+				}
+			});
+			next.setOnAction(e -> {
+				if(pos != list.size() - 1){
+					pos++;
+				}
+			});
+
+			root.setCenter(loadImage(list.get(pos)));
+		}
+		root.setBottom(buttonBox);
 	}
 
 	public ImageView loadImage(File imgFile){
