@@ -22,7 +22,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			BorderPane root = new BorderPane();
-			Scene scene = new Scene(root,900,700);
+			Scene scene = new Scene(root, 200, 150);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 			Button importImg = new Button("Import Images");
@@ -34,7 +34,9 @@ public class Main extends Application {
 				slideShowStage();
 			});
 
-
+			root.setBottom(importImg);
+			
+			primaryStage.setTitle("Image Importer");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
@@ -56,7 +58,7 @@ public class Main extends Application {
 		Button next = new Button("Next");
 		Button prev = new Button("Previous");
 
-		HBox buttonBox = new HBox(add, delete, next, prev);
+		HBox buttonBox = new HBox(add, delete, prev, next);
 
 		bp.setCenter(loadImage(list.get(pos)));
 		
@@ -92,6 +94,7 @@ public class Main extends Application {
 		
 		bp.setBottom(buttonBox);
 		
+		stage.setTitle("Image Slideshow");
 		stage.setScene(sc);
 		stage.show();
 	}
@@ -104,13 +107,13 @@ public class Main extends Application {
 		ImageView iv = new ImageView(img);
 
 		iv.setPreserveRatio(true);
-		iv.setFitHeight(700);
+		iv.setFitHeight(600);
 
 		return iv;
 	}
 
 	public File[] getFiles(){
-		JFileChooser fc = new JFileChooser();
+		JFileChooser fc = new JFileChooser(".");
 		fc.setMultiSelectionEnabled(true);
 		File[] files = null;
 		int retVal = fc.showOpenDialog(null);
