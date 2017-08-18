@@ -66,7 +66,21 @@ public class Main extends Application {
 		
 		HBox moveButtons = new HBox(prev, next);	
 		
-		GridPane bottom = new GridPane();
+		mathButtons.setAlignment(Pos.BASELINE_LEFT);
+		moveButtons.setAlignment(Pos.BASELINE_RIGHT);
+		slideshow.setAlignment(Pos.BASELINE_CENTER);
+		
+		HBox bottom = new HBox(add, blankSpace(), delete, blankSpace(), prev,blankSpace(), next, blankSpace(), slideshow);
+
+//		GridPane bottom = new GridPane();
+//		
+//		bottom.add(mathButtons, 0, 0);
+//		bottom.add(blankSpace(), 1, 0);
+//		bottom.add(blankSpace(), 2, 0);
+//		bottom.add(moveButtons, 3, 0);
+//		bottom.add(blankSpace(), 4, 0);
+//		bottom.add(blankSpace(), 5, 0);
+//		bottom.add(slideshow, 6, 0);
 		
 		bp.setCenter(loadImage(list.get(pos)));
 		
@@ -100,7 +114,7 @@ public class Main extends Application {
 
 		bp.setCenter(loadImage(list.get(pos)));
 		
-		bp.setBottom(buttonBox);
+		bp.setBottom(bottom);
 		
 		stage.setTitle("Image Slideshow");
 		stage.setScene(sc);
@@ -108,7 +122,7 @@ public class Main extends Application {
 	}
 	
 	public Label blankSpace() {
-		return new Label ("                                 ");
+		return new Label ("                                     ");
 	}
 
 
